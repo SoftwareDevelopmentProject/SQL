@@ -19,7 +19,7 @@ CREATE TABLE staff (
     staff_password VARCHAR(255) NOT NULL,
     staff_phone VARCHAR(24) NOT NULL,
     staff_address VARCHAR(255) NOT NULL,
-    staff_role INTEGER NOT NULL DEFAULT 0,
+    staff_role TINYINT NOT NULL DEFAULT 0,
     staff_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
