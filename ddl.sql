@@ -10,7 +10,8 @@ CREATE TABLE member (
     member_address VARCHAR(255) NOT NULL,
 	member_country VARCHAR(2) NOT NULL,
     member_credit_card VARCHAR(16),
-    member_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+    member_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	UNIQUE (member_email)
 ) ENGINE=InnoDB;
 
 CREATE TABLE staff (
@@ -21,7 +22,8 @@ CREATE TABLE staff (
     staff_phone VARCHAR(24) NOT NULL,
     staff_address VARCHAR(255) NOT NULL,
     staff_role TINYINT NOT NULL DEFAULT 0,
-    staff_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    staff_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	UNIQUE (staff_email)
 ) ENGINE=InnoDB;
 
 CREATE TABLE genre (
@@ -49,7 +51,8 @@ CREATE TABLE feedback (
     member_id INT NOT NULL,
     book_id INT NOT NULL,
     CONSTRAINT fk_feedback_member FOREIGN KEY (member_id) REFERENCES member(member_id),
-    CONSTRAINT fk_feedback_book FOREIGN KEY (book_id) REFERENCES book(book_id)
+    CONSTRAINT fk_feedback_book FOREIGN KEY (book_id) REFERENCES book(book_id),
+	UNIQUE (member_id, book_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE feedback_rating (
@@ -58,7 +61,8 @@ CREATE TABLE feedback_rating (
     feedback_id INT NOT NULL,
     member_id INT NOT NULL,
     CONSTRAINT fk_rating_feedback FOREIGN KEY (feedback_id) REFERENCES feedback(feedback_id),
-    CONSTRAINT fk_rating_member FOREIGN KEY (member_id) REFERENCES member(member_id)
+    CONSTRAINT fk_rating_member FOREIGN KEY (member_id) REFERENCES member(member_id),
+	UNIQUE (feedback_id, member_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `order` (
