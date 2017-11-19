@@ -8,6 +8,7 @@ CREATE TABLE member (
     member_password VARCHAR(255) NOT NULL,
     member_phone VARCHAR(24) NOT NULL,
     member_address VARCHAR(255) NOT NULL,
+	member_country VARCHAR(2) NOT NULL,
     member_credit_card VARCHAR(16),
     member_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
 ) ENGINE=InnoDB;
