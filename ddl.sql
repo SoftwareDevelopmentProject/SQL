@@ -37,6 +37,7 @@ CREATE TABLE book (
     book_author VARCHAR(255),
 	book_publisher VARCHAR(255),
 	genre_id INT NOT NULL,
+	book_description TEXT NOT NULL,
     book_stock INT NOT NULL,
     book_price DECIMAL(10,2) NOT NULL,
     book_years SMALLINT NOT NULL,
