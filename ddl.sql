@@ -10,6 +10,7 @@ CREATE TABLE member (
     member_address VARCHAR(255) NOT NULL,
 	member_country VARCHAR(2) NOT NULL,
     member_credit_card VARCHAR(16),
+	member_reward_points INT NOT NULL DEFAULT 0,
     member_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE (member_email)
 ) ENGINE=InnoDB;
