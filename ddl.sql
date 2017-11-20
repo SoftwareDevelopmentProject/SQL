@@ -75,9 +75,9 @@ CREATE TABLE `order` (
     order_payment_method VARCHAR(255) NOT NULL,
     order_transaction_id VARCHAR(24) NOT NULL,
     order_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	order_status VARCHAR(24) NOT NULL,
     member_id INT NOT NULL,
-    CONSTRAINT fk_order_member FOREIGN KEY (member_id)
-    REFERENCES member(member_id)
+    CONSTRAINT fk_order_member FOREIGN KEY (member_id) REFERENCES member(member_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE order_detail (
