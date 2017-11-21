@@ -93,6 +93,7 @@ CREATE TABLE request (
     book_id INT NOT NULL,
     request_quantity INT NOT NULL,
     staff_id INT NOT NULL,
+	status VARCHAR(24) NOT NULL,
     request_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_request_staff FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
     CONSTRAINT fk_request_book FOREIGN KEY (book_id) REFERENCES book(book_id)
