@@ -15,6 +15,13 @@ CREATE TABLE member (
 	UNIQUE (member_email)
 ) ENGINE=InnoDB;
 
+CREATE TABLE login_attempt (
+	member_id INT NOT NULL,
+	status TINYINT NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT fk_login_member FOREIGN KEY (member_id) REFERENCES member(member_id)
+);
+
 CREATE TABLE staff (
     staff_id INT PRIMARY KEY AUTO_INCREMENT,
     staff_name VARCHAR(128) NOT NULL,
