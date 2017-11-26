@@ -8,11 +8,11 @@ CREATE TABLE member (
     member_password VARCHAR(255) NOT NULL,
     member_phone VARCHAR(24) NOT NULL,
     member_address VARCHAR(255) NOT NULL,
-	member_country VARCHAR(2) NOT NULL,
+    member_country VARCHAR(2) NOT NULL,
     member_credit_card VARCHAR(16),
-	member_reward_points INT NOT NULL DEFAULT 0,
+    member_reward_points INT NOT NULL DEFAULT 0,
     member_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	UNIQUE (member_email)
+    UNIQUE (member_email)
 ) ENGINE=InnoDB;
 
 CREATE TABLE login_attempt (
@@ -20,7 +20,7 @@ CREATE TABLE login_attempt (
 	status TINYINT NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT fk_login_member FOREIGN KEY (member_id) REFERENCES member(member_id)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE staff (
     staff_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -31,25 +31,25 @@ CREATE TABLE staff (
     staff_address VARCHAR(255) NOT NULL,
     staff_role TINYINT NOT NULL DEFAULT 0,
     staff_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	UNIQUE (staff_email)
+    UNIQUE (staff_email)
 ) ENGINE=InnoDB;
 
 CREATE TABLE genre (
-	genre_id INT PRIMARY KEY AUTO_INCREMENT,
-	genre_name VARCHAR(255) NOT NULL
+    genre_id INT PRIMARY KEY AUTO_INCREMENT,
+    genre_name VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE book (
     book_id INT PRIMARY KEY AUTO_INCREMENT,
     book_title VARCHAR(255) NOT NULL,
     book_author VARCHAR(255),
-	book_publisher VARCHAR(255),
-	genre_id INT NOT NULL,
-	book_description TEXT NOT NULL,
+    book_publisher VARCHAR(255),
+    genre_id INT NOT NULL,
+    book_description TEXT NOT NULL,
     book_stock INT NOT NULL,
     book_price DECIMAL(10,2) NOT NULL,
     book_years SMALLINT NOT NULL,
-	CONSTRAINT fk_genre_book FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+    CONSTRAINT fk_genre_book FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE feedback (
@@ -61,7 +61,7 @@ CREATE TABLE feedback (
     book_id INT NOT NULL,
     CONSTRAINT fk_feedback_member FOREIGN KEY (member_id) REFERENCES member(member_id),
     CONSTRAINT fk_feedback_book FOREIGN KEY (book_id) REFERENCES book(book_id),
-	UNIQUE (member_id, book_id)
+    UNIQUE (member_id, book_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE feedback_rating (
@@ -71,7 +71,7 @@ CREATE TABLE feedback_rating (
     member_id INT NOT NULL,
     CONSTRAINT fk_rating_feedback FOREIGN KEY (feedback_id) REFERENCES feedback(feedback_id),
     CONSTRAINT fk_rating_member FOREIGN KEY (member_id) REFERENCES member(member_id),
-	UNIQUE (feedback_id, member_id)
+    UNIQUE (feedback_id, member_id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `order` (
@@ -82,7 +82,7 @@ CREATE TABLE `order` (
     order_payment_method VARCHAR(255) NOT NULL,
     order_transaction_id VARCHAR(24) NOT NULL,
     order_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	order_status VARCHAR(24) NOT NULL,
+    order_status VARCHAR(24) NOT NULL,
     member_id INT NOT NULL,
     CONSTRAINT fk_order_member FOREIGN KEY (member_id) REFERENCES member(member_id)
 ) ENGINE=InnoDB;
@@ -100,7 +100,7 @@ CREATE TABLE request (
     book_id INT NOT NULL,
     request_quantity INT NOT NULL,
     staff_id INT NOT NULL,
-	status VARCHAR(24) NOT NULL,
+    status VARCHAR(24) NOT NULL,
     request_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_request_staff FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
     CONSTRAINT fk_request_book FOREIGN KEY (book_id) REFERENCES book(book_id)
