@@ -9,6 +9,7 @@ CREATE TABLE member (
     member_phone VARCHAR(24) NOT NULL,
     member_address VARCHAR(255) NOT NULL,
     member_country VARCHAR(2) NOT NULL,
+    member_trustfulness TINYINT NOT NULL DEFAULT 1,
     member_credit_card VARCHAR(16),
     member_reward_points INT NOT NULL DEFAULT 0,
     member_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
