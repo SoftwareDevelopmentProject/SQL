@@ -96,13 +96,25 @@ CREATE TABLE order_detail (
     CONSTRAINT fk_order_detail_book FOREIGN KEY (book_id) REFERENCES book(book_id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE request_status (
+    request_status_id INT PRIMARY KEY AUTO_INCREMENT,
+    status_name VARCHAR(32) NOT NULL,
+    sort INT NOT NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE request (
     request_id INT PRIMARY KEY AUTO_INCREMENT,
-    book_id INT NOT NULL,
-    request_quantity INT NOT NULL,
     staff_id INT NOT NULL,
-    status VARCHAR(24) NOT NULL,
+    request_status_id INT NOT NULL,
     request_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_request_staff FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
+    CONSTRAINT fk_request_status FOREIGN KEY (request_status_id) REFERENCES request_status(request_status_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE request_detail (
+    request_id INT NOT NULL,
+    book_id INT NOT NULL,
+    quantity INT NOT NULL,
+    CONSTRAINT fk_request_detail FOREIGN KEY (request_id) REFERENCES request(request_id),
     CONSTRAINT fk_request_book FOREIGN KEY (book_id) REFERENCES book(book_id)
 ) ENGINE=InnoDB;
