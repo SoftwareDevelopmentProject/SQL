@@ -98,8 +98,7 @@ CREATE TABLE order_detail (
 
 CREATE TABLE request_status (
     request_status_id INT PRIMARY KEY AUTO_INCREMENT,
-    status_name VARCHAR(32) NOT NULL,
-    sort INT NOT NULL
+    status_name VARCHAR(32) NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE request (
