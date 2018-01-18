@@ -104,7 +104,7 @@ CREATE TABLE request_status (
 CREATE TABLE request (
     request_id INT PRIMARY KEY AUTO_INCREMENT,
     staff_id INT NOT NULL,
-    request_status_id INT NOT NULL,
+    request_status_id INT NOT NULL DEFAULT 3,
     request_created_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_request_staff FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
     CONSTRAINT fk_request_status FOREIGN KEY (request_status_id) REFERENCES request_status(request_status_id)
